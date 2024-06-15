@@ -196,8 +196,8 @@ static Key keys[] = {
     { MODKEY,              XK_space,  spawn, SHCMD("st -c float") },                                            /* super space      | 打开浮动st终端         */
     { MODKEY,              XK_d,      spawn, SHCMD("rofi -combi-modi window#drun -show combi -modi combi -show-icons -theme android_notification -font \"JetBrainsMono Nerd Font\"") },                                         /* super d          | rofi: 执行run          */
     { MODKEY,              XK_n,      spawn, SHCMD("~/.dwm/config/blurlock.sh") },                              /* super n          | 锁定屏幕               */
-    { MODKEY|ControlMask,  XK_Up,     spawn, SHCMD("pamixer -i 1") },                                           /* super ctrl up    | 音量加                 */
-    { MODKEY|ControlMask,  XK_Down,   spawn, SHCMD("pamixer -d 1") },                                           /* super ctrl down  | 音量减                 */
+    { MODKEY|ControlMask,  XK_Up,     spawn, SHCMD("pamixer -i 1 && bash ~/.dwm/statusbar/statusbar.sh update vol && bash ~/.dwm/statusbar/packages/vol.sh notify") },                                           /* super ctrl up    | 音量加                 */
+    { MODKEY|ControlMask,  XK_Down,   spawn, SHCMD("pamixer -d 1 && bash ~/.dwm/statusbar/statusbar.sh update vol && bash ~/.dwm/statusbar/packages/vol.sh notify") },                                           /* super ctrl down  | 音量减                 */
     { MODKEY|ShiftMask,    XK_a,      spawn, SHCMD("flameshot gui") },                                          /* super shift a    | 截图                   */
     { MODKEY|ShiftMask,    XK_q,      spawn, SHCMD("kill -9 $(xprop | grep _NET_WM_PID | awk '{print $3}')") }, /* super shift q    | 选中某个窗口并强制kill */
 
