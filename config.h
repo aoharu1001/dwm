@@ -135,8 +135,8 @@ static Key keys[] = {
 
     { MODKEY,              XK_h,            viewtoleft,       {0} },                     /* super h            |  聚焦到左边的tag */
     { MODKEY,              XK_l,            viewtoright,      {0} },                     /* super l            |  聚焦到右边的tag */
-    { MODKEY|ShiftMask,    XK_h,            tagtoleft,        {0} },                     /* super shift h      |  将本窗口移动到左边tag */
-    { MODKEY|ShiftMask,    XK_l,            tagtoright,       {0} },                     /* super shift l      |  将本窗口移动到右边tag */
+    { MODKEY|ShiftMask,    XK_g,            tagtoleft,        {0} },                     /* super shift g      |  将本窗口移动到左边tag */
+    { MODKEY|ShiftMask,    XK_semicolon,    tagtoright,       {0} },                     /* super shift ;      |  将本窗口移动到右边tag */
 
     { MODKEY,              XK_a,            toggleoverview,   {0} },                     /* super a            |  显示所有tag 或 跳转到聚焦窗口的tag */
 
@@ -184,10 +184,10 @@ static Key keys[] = {
   	{ MODKEY,              XK_Down,         focusdir,         {.i = DOWN } },            /* super down         | 二维聚焦窗口 */
   	{ MODKEY,              XK_Left,         focusdir,         {.i = LEFT } },            /* super left         | 二维聚焦窗口 */
   	{ MODKEY,              XK_Right,        focusdir,         {.i = RIGHT } },           /* super right        | 二维聚焦窗口 */
-    { MODKEY|ShiftMask,    XK_Up,           exchange_client,  {.i = UP } },              /* super shift up     | 二维交换窗口 (仅平铺) */
-    { MODKEY|ShiftMask,    XK_Down,         exchange_client,  {.i = DOWN } },            /* super shift down   | 二维交换窗口 (仅平铺) */
-    { MODKEY|ShiftMask,    XK_Left,         exchange_client,  {.i = LEFT} },             /* super shift left   | 二维交换窗口 (仅平铺) */
-    { MODKEY|ShiftMask,    XK_Right,        exchange_client,  {.i = RIGHT } },           /* super shift right  | 二维交换窗口 (仅平铺) */
+    { MODKEY|ShiftMask,    XK_k,            exchange_client,  {.i = UP } },              /* super shift k      | 二维交换窗口 (仅平铺) */
+    { MODKEY|ShiftMask,    XK_j,            exchange_client,  {.i = DOWN } },            /* super shift j      | 二维交换窗口 (仅平铺) */
+    { MODKEY|ShiftMask,    XK_h,            exchange_client,  {.i = LEFT} },             /* super shift h      | 二维交换窗口 (仅平铺) */
+    { MODKEY|ShiftMask,    XK_l,            exchange_client,  {.i = RIGHT } },           /* super shift l      | 二维交换窗口 (仅平铺) */
 
     /* spawn + SHCMD 执行对应命令(已下部分建议完全自己重新定义) */
     { MODKEY,              XK_s,      togglescratch, SHCMD("st -T scratchpad -c float") },                      /* super s          | 打开scratch终端        */

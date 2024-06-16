@@ -1,2 +1,7 @@
+# fcitx
+export XMODIFIERS="@im=fcitx"
+export QT_IM_MODULE=GTK
+export GTK_IM_MODULE=GTK
+
 # dwm
 exec dwm

@@ -7,9 +7,6 @@ _thisdir=$(cd $(dirname $0);pwd)
 
 settings() {
     [ $1 ] && sleep $1
-    export XMODIFIERS="@im=fcitx"
-    export QT_IM_MODULE=GTK
-    export GTK_IM_MODULE=GTK                  # fcitx
     xset -b                                   # 关闭蜂鸣器
     #syndaemon -i 1 -t -K -R -d               # 设置使用键盘时触控板短暂失效
     bash ~/.dwm/config/screen.sh              # 设置显示器
