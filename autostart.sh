@@ -20,7 +20,6 @@ daemons() {
     nitrogen --restore                        # wallpaper
     fcitx5 &                                  # 开启输入法
     flameshot &                               # flameshot
-    blueman-applet &                          # bluetooth
     dunst -conf ~/.dwm/config/dunst.conf &    # notice server
     picom --experimental-backends --config ~/.dwm/config/picom.conf >> /dev/null 2>&1 & # 开启picom
 }
