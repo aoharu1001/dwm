@@ -1,7 +1,7 @@
 #! /bin/bash
 
 thisdir=$(cd $(dirname $0);pwd)
-tempfile=$thisdir/temp
+tempfile=/tmp/statusbar_temp
 touch $tempfile
 
 # 设置某个模块的状态 update cpu mem ...
@@ -21,9 +21,9 @@ click() {
 
 # 更新状态栏
 refresh() {
-    _wifi='';_cpu='';_mem='';_date='';_vol='';_bat=''                    # 重置所有模块的状态为空
+    _wifi='';_cpu='';_mem='';_date='';_vol='';_light='';_bat=''          # 重置所有模块的状态为空
     source $tempfile                                                     # 从 temp 文件中读取模块的状态
-    xsetroot -name "$_wifi$_cpu$_mem$_date$_vol$_bat"      # 更新状态栏
+    xsetroot -name "$_wifi$_cpu$_mem$_date$_vol$_light$_bat"             # 更新状态栏
 }
 
 # 启动定时更新状态栏 不同的模块有不同的刷新周期 注意不要重复启动该func
@@ -34,11 +34,11 @@ cron() {
         to=()                                                            # 存放本次需要更新的模块
         [ $((i % 10)) -eq 0 ]  && to=(${to[@]} wifi)                     # 每 10秒  更新 wifi
         [ $((i % 20)) -eq 0 ]  && to=(${to[@]} cpu mem vol)              # 每 20秒  更新 cpu mem vol
-        [ $((i % 300)) -eq 0 ] && to=(${to[@]} bat)                      # 每 300秒 更新 bat
-        [ $((i % 5)) -eq 0 ]   && to=(${to[@]} date)                     # 每 5秒   更新 date
-        [ $i -lt 30 ] && to=(wifi cpu mem date vol icons bat)            # 前 30秒  更新所有模块
+        [ $((i % 60)) -eq 0 ] && to=(${to[@]} bat light)                 # 每 60秒  更新 bat light
+        [ $((i % 1)) -eq 0 ]   && to=(${to[@]} date)                     # 每 1秒   更新 date
+        [ $i -lt 1 ] && to=(wifi cpu mem date vol light bat)             # 前 1秒   更新所有模块
         update ${to[@]}                                                  # 将需要更新的模块传递给 update
-        sleep 5; let i+=5
+        sleep 1; let i+=1
     done &
 }
 

@@ -2,7 +2,8 @@
 # 电池电量
 # 需要安装acpi或者upower
 
-tempfile=$(cd $(dirname $0);cd ..;pwd)/temp
+#tempfile=$(cd $(dirname $0);cd ..;pwd)/temp
+tempfile=/tmp/statusbar_temp
 
 this=_bat
 icon_color="^c#3B001B^^b#4865660x88^"

@@ -1,7 +1,8 @@
 #! /bin/bash
 # DATE 获取日期和时间的脚本
 
-tempfile=$(cd $(dirname $0);cd ..;pwd)/temp
+#tempfile=$(cd $(dirname $0);cd ..;pwd)/temp
+tempfile=/tmp/statusbar_temp
 
 this=_date
 icon_color="^c#4B005B^^b#7E51680x88^"
@@ -9,7 +10,7 @@ text_color="^c#4B005B^^b#7E51680x99^"
 signal=$(echo "^s$this^" | sed 's/_//')
 
 update() {
-    time_text="$(date '+%m/%d %H:%M')"
+    time_text="$(date '+%m/%d %H:%M:%S')"
     case "$(date '+%I')" in
         "01") time_icon="" ;;
         "02") time_icon="" ;;

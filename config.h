@@ -7,10 +7,10 @@ static const unsigned int borderpx       = 2;         /* 窗口边框大小 */
 static const unsigned int systraypinning = 1;         /* 托盘跟随的显示器 0代表不指定显示器 */
 static const unsigned int systrayspacing = 1;         /* 托盘间距 */
 static const unsigned int systrayspadding = 6;        /* 托盘和状态栏的间隙 */
-static int gappi                         = 6;        /* 窗口与窗口 缝隙大小 */
-static int gappo                         = 6;        /* 窗口与边缘 缝隙大小 */
-static const int _gappo                  = 6;        /* 窗口与窗口 缝隙大小 不可变 用于恢复时的默认值 */
-static const int _gappi                  = 6;        /* 窗口与边缘 缝隙大小 不可变 用于恢复时的默认值 */
+static int gappi                         = 6;         /* 窗口与窗口 缝隙大小 */
+static int gappo                         = 6;         /* 窗口与边缘 缝隙大小 */
+static const int _gappo                  = 6;         /* 窗口与窗口 缝隙大小 不可变 用于恢复时的默认值 */
+static const int _gappi                  = 6;         /* 窗口与边缘 缝隙大小 不可变 用于恢复时的默认值 */
 static const int vertpad                 = 5;         /* vertical padding of bar */
 static const int sidepad                 = 5;         /* horizontal padding of bar */
 static const int overviewgappi           = 24;        /* overview时 窗口与边缘 缝隙大小 */
@@ -126,7 +126,7 @@ static const Layout layouts[] = {
 
 static Key keys[] = {
     /* modifier            key              function          argument */
-    { MODKEY,              XK_equal,        togglesystray,    {0} },                     /* super +            |  切换 托盘栏显示状态 */
+    { MODKEY,              XK_equal,        togglesystray,    {0} },                     /* super =            |  切换 托盘栏显示状态 */
 
     { MODKEY,              XK_Tab,          focusstack,       {.i = +1} },               /* super tab          |  本tag内切换聚焦窗口 */
     { MODKEY|ShiftMask,    XK_Tab,          focusstack,       {.i = -1} },               /* super shift tab    |  本tag内切换聚焦窗口 */
@@ -192,14 +192,16 @@ static Key keys[] = {
     /* spawn + SHCMD 执行对应命令(已下部分建议完全自己重新定义) */
     { MODKEY,              XK_s,      togglescratch, SHCMD("st -T scratchpad -c float") },                      /* super s          | 打开scratch终端        */
     { MODKEY,              XK_Return, spawn, SHCMD("st") },                                                     /* super enter      | 打开st终端             */
-    { MODKEY,              XK_minus,  spawn, SHCMD("st -c FG") },                                               /* super +          | 打开全局st终端         */
+    { MODKEY,              XK_minus,  spawn, SHCMD("st -c FG") },                                               /* super -          | 打开全局st终端         */
     { MODKEY,              XK_space,  spawn, SHCMD("st -c float") },                                            /* super space      | 打开浮动st终端         */
-    { MODKEY,              XK_d,      spawn, SHCMD("rofi -combi-modi window#drun -show combi -modi combi -show-icons -theme android_notification -font \"JetBrainsMono Nerd Font\"") },                                         /* super d          | rofi: 执行run          */
-    { MODKEY,              XK_n,      spawn, SHCMD("~/.dwm/config/blurlock.sh") },                              /* super n          | 锁定屏幕               */
+    { MODKEY,              XK_d,      spawn, SHCMD("~/.dwm/config/rofi.sh") },                                  /* super d          | rofi: 执行run          */
     { MODKEY|ControlMask,  XK_Up,     spawn, SHCMD("pamixer -i 1 && bash ~/.dwm/statusbar/statusbar.sh update vol && bash ~/.dwm/statusbar/packages/vol.sh notify") },                                           /* super ctrl up    | 音量加                 */
     { MODKEY|ControlMask,  XK_Down,   spawn, SHCMD("pamixer -d 1 && bash ~/.dwm/statusbar/statusbar.sh update vol && bash ~/.dwm/statusbar/packages/vol.sh notify") },                                           /* super ctrl down  | 音量减                 */
     { MODKEY|ShiftMask,    XK_a,      spawn, SHCMD("flameshot gui") },                                          /* super shift a    | 截图                   */
+    { MODKEY|ControlMask,  XK_Left,   spawn, SHCMD("light -U 1 && bash ~/.dwm/statusbar/statusbar.sh update light && bash ~/.dwm/statusbar/packages/light.sh notify") },                                         /* super ctrl left  | 屏幕亮度减             */
+    { MODKEY|ControlMask,  XK_Right,  spawn, SHCMD("light -A 1 && bash ~/.dwm/statusbar/statusbar.sh update light && bash ~/.dwm/statusbar/packages/light.sh notify") },                                         /* super ctrl right | 屏幕亮度加             */
     { MODKEY|ShiftMask,    XK_q,      spawn, SHCMD("kill -9 $(xprop | grep _NET_WM_PID | awk '{print $3}')") }, /* super shift q    | 选中某个窗口并强制kill */
+    { MODKEY,              XK_Escape, spawn, SHCMD("bash ~/.dwm/config/settings.sh") },                         /* super esc        | 关机/重启              */
 
     /* super key : 跳转到对应tag (可附加一条命令 若目标目录无窗口，则执行该命令) */
     /* super shift key : 将聚焦窗口移动到对应tag */

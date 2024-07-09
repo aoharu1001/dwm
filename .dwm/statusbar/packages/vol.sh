@@ -17,7 +17,8 @@
 # $ pamixer --get-volume
 # 15
 
-tempfile=$(cd $(dirname $0);cd ..;pwd)/temp
+#tempfile=$(cd $(dirname $0);cd ..;pwd)/temp
+tempfile=/tmp/statusbar_temp
 
 this=_vol
 icon_color="^c#442266^^b#7879560x88^"
@@ -47,7 +48,7 @@ click() {
     case "$1" in
         L) notify                                           ;; # 仅通知
         M) pamixer -m                                       ;; # 切换静音
-        R) killall pavucontrol || pavucontrol --class=FGN & ;; # 打开pavucontrol
+        R) killall pavucontrol || pavucontrol & ;; # 打开pavucontrol
         U) pamixer -i 1; notify;; # 音量加
         D) pamixer -d 1; notify;; # 音量减
     esac

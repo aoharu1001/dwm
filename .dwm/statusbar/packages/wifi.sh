@@ -1,6 +1,7 @@
 #! /bin/bash
 
-tempfile=$(cd $(dirname $0);cd ..;pwd)/temp
+#tempfile=$(cd $(dirname $0);cd ..;pwd)/temp
+tempfile=/tmp/statusbar_temp
 
 this=_wifi
 icon_color="^c#000080^^b#3870560x88^"
@@ -43,7 +44,7 @@ call_nm() {
     pid2=`ps aux | grep 'st -t statusutil_nm' | grep -v grep | awk '{print $2}'`
     mx=`xdotool getmouselocation --shell | grep X= | sed 's/X=//'`
     my=`xdotool getmouselocation --shell | grep Y= | sed 's/Y=//'`
-    kill $pid1 && kill $pid2 || st -t statusutil_nm -g 60x25+$((mx - 240))+$((my + 20)) -c FGN -C "#222D31@4" -e 'nmtui'
+    kill $pid1 && kill $pid2 || st -t statusutil_nm -g 60x25+$((mx - 240))+$((my + 20)) -c FGN -C "#222D31@4" -e 'nmtui-connect'
 }
 
 click() {
